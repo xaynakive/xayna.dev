@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>xayna · design engineer</title>
+<meta name="description" content="xayna, design engineer. I build places, not pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --ink:#1f1f23; --text:#5b5b66; --soft:#8c8c97; --line:#ececf0; --hover:#f6f6f8;
+  --head:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --bg:#ffffff; --ink:#1f1f23; --text:#5b5b66; color-scheme:light; } }
+*,*::before,*::after{ box-sizing:inherit; -webkit-tap-highlight-color:transparent; }
+html{ scroll-behavior:smooth; }
+body{ margin:0; background:var(--bg); color:var(--text); font:400 16px/1.7 var(--body); -webkit-font-smoothing:antialiased; }
+a{ color:var(--ink); text-decoration:none; }
+:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; border-radius:4px; }
+.wrap{ width:min(640px,100%); margin:0 auto; padding:0 24px; }
+
+header{ display:flex; justify-content:space-between; align-items:center; padding:28px 0; }
+.logo{ font:600 18px var(--head); color:var(--ink); }
+nav{ display:flex; gap:20px; font-size:14px; }
+nav a{ color:var(--soft); transition:color .2s; }
+nav a:hover{ color:var(--ink); }
+
+.intro{ padding:72px 0 64px; }
+h1{ font:600 clamp(40px,9vw,56px)/1.05 var(--head); color:var(--ink); margin:0 0 18px; letter-spacing:-.02em; }
+.intro p{ margin:0; font-size:18px; max-width:30em; }
+.intro p + p{ margin-top:10px; color:var(--soft); font-size:16px; }
+
+section{ padding:40px 0; border-top:1px solid var(--line); }
+h2{ font:500 20px var(--head); color:var(--ink); margin:0 0 18px; }
+
+.work{ list-style:none; margin:0; padding:0; }
+.work li{ margin:0 -14px; }
+.work a, .work div.row{ display:block; padding:14px; border-radius:12px; transition:background .2s; }
+.work a:hover{ background:var(--hover); }
+.top{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
+.name{ font:500 17px var(--head); color:var(--ink); }
+.kind{ font-size:13px; color:var(--soft); white-space:nowrap; }
+.desc{ margin:2px 0 0; font-size:15px; }
+.go{ color:var(--soft); transition:transform .2s; display:inline-block; }
+.work a:hover .go{ transform:translate(2px,-2px); }
+
+.now{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.now li{ display:grid; grid-template-columns:96px 1fr; gap:12px; }
+.now span{ color:var(--soft); font-size:14px; padding-top:1px; }
+
+.about p{ margin:0 0 14px; max-width:34em; }
+
+.contact{ display:grid; gap:2px; }
+.contact a{ display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); }
+.contact a span{ color:var(--soft); font-size:14px; }
+.contact a:hover span{ color:var(--ink); }
+
+footer{ padding:48px 0 64px; color:var(--soft); font-size:14px; border-top:1px solid var(--line); }
+
+@media (max-width:480px){ .now li{ grid-template-columns:1fr; gap:0; } .kind{ display:none; } }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } *{ transition:none!important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top" aria-label="xayna, back to top">xayna</a>
+    <nav aria-label="Sections"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="intro">
+      <h1>xayna</h1>
+      <p>Design engineer. I build places, not pages.</p>
+      <p>Designing interfaces and writing the code behind them since 2019. Open to remote design engineering and frontend roles.</p>
+    </div>
+
+    <section id="work" aria-labelledby="work-h">
+      <h2 id="work-h">Work</h2>
+      <ul class="work">
+        <li><a href="https://github.com/xaynakive/meow" target="_blank" rel="noopener"><div class="top"><span class="name">MEOW <span class="go">↗</span></span><span class="kind">Open-source web tooling</span></div><p class="desc">A guided website builder that plays like a dress-up game. You leave with a real site you own.</p></a></li>
+        <li><a href="https://github.com/xaynakive/mythirium" target="_blank" rel="noopener"><div class="top"><span class="name">Mythirium <span class="go">↗</span></span><span class="kind">WebGL</span></div><p class="desc">A glass cube that holds a whole portfolio, floating in water I wrote as a shader.</p></a></li>
+        <li><a href="https://xaynakive.github.io/purrsona" target="_blank" rel="noopener"><div class="top"><span class="name">PurrSona <span class="go">↗</span></span><span class="kind">Machine learning</span></div><p class="desc">A small model that sorts a cat’s energy into five archetypes, running in the browser with no server.</p></a></li>
+        <li><div class="row"><div class="top"><span class="name">Ocean</span><span class="kind">Assistant</span></div><p class="desc">An assistant that connects my products and platforms, and politely refuses everything outside them. In progress.</p></div></li>
+        <li><div class="row"><div class="top"><span class="name">Breeze</span><span class="kind">NLP and AI safety</span></div><p class="desc">An emotion-aware classifier trained on about 100k samples, with a deterministic safety layer in front.</p></div></li>
+        <li><a href="https://github.com/xaynakive/meowtm" target="_blank" rel="noopener"><div class="top"><span class="name">MeowTM <span class="go">↗</span></span><span class="kind">x86 Assembly</span></div><p class="desc">A colourful 16-bit ATM simulator, because even cats need access to their treat funds.</p></a></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="now-h">
+      <h2 id="now-h">Now</h2>
+      <ul class="now">
+        <li><span>Building</span><div>MEOW and Ocean, in the open</div></li>
+        <li><span>Learning</span><div>Deep learning, and shaders that behave like real light</div></li>
+        <li><span>Starting</span><div>365 days of code on January 1st, 2027</div></li>
+        <li><span>Next</span><div>Relocating to Switzerland</div></li>
+      </ul>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <p>I started in 2019 with Carrd pages and Neocities, then spent quiet years doing open source under other names. Now I design every pixel myself and write the code that makes it move.</p>
+      <p>I work in HTML, CSS, JavaScript, TypeScript, React and WebGL, with Python and Flask beyond the front end. I like work that feels like a place: soft, a little strange, and very carefully built.</p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="contact">
+        <a href="mailto:work@xayna.dev">work@xayna.dev <span>Work and recruiting</span></a>
+        <a href="mailto:hello@xayna.dev">hello@xayna.dev <span>Everything else</span></a>
+        <a href="https://github.com/xaynakive" target="_blank" rel="noopener">GitHub <span>@xaynakive</span></a>
+        <a href="https://instagram.com/xaynakive" target="_blank" rel="noopener">Instagram <span>@xaynakive</span></a>
+        <a href="https://x.com/xaynakive" target="_blank" rel="noopener">X <span>@xaynakive</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Signed with static &amp; sincerity, xayna</footer>
+</div>
+</body>
+</html>
