@@ -3,44 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>xayna · design engineer</title>
+<title>Xayna · Design Engineer</title>
 <meta name="description" content="xayna, design engineer. I build places, not pages.">
+<meta name="theme-color" content="#F6FAFE" id="tc">
+
+<link rel="icon" href="favicon.png" type="image/png"> 
+
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Light: white with a little cold, icy blue in it */
 :root{
-  --bg:#ffffff; --ink:#1f1f23; --text:#5b5b66; --soft:#8c8c97; --line:#ececf0; --hover:#f6f6f8;
+  --bg:#F6FAFE; --ink:#1D1D1F; --text:#55606B; --soft:#6B7783; --line:#DFE9F1; --tile:#EAF2F9; --hover:#EDF4FA;
+  --accent:#2E6F9E; --accent-soft:#D3E3EF;
+  --sun:none; --moon:block;
   --head:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light; box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --bg:#ffffff; --ink:#1f1f23; --text:#5b5b66; color-scheme:light; } }
+/* Dark: pure black, with the pale blue aluminium as the accent */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000; --ink:#F5F5F7; --text:#A1A1A6; --soft:#86868B; --line:#1F1F22; --tile:#0E1012; --hover:#141416;
+    --accent:#B5D0E6; --accent-soft:#17232D;
+    --sun:block; --moon:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000; --ink:#F5F5F7; --text:#A1A1A6; --soft:#86868B; --line:#1F1F22; --tile:#0E1012; --hover:#141416;
+  --accent:#B5D0E6; --accent-soft:#17232D;
+  --sun:block; --moon:none; color-scheme:dark;
+}
+
 *,*::before,*::after{ box-sizing:inherit; -webkit-tap-highlight-color:transparent; }
-html{ scroll-behavior:smooth; }
-body{ margin:0; background:var(--bg); color:var(--text); font:400 16px/1.7 var(--body); -webkit-font-smoothing:antialiased; }
+html{ scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px); }
+body{ margin:0; background:var(--bg); color:var(--text); font:400 16px/1.7 var(--body); -webkit-font-smoothing:antialiased; transition:background-color .35s ease,color .35s ease; }
 a{ color:var(--ink); text-decoration:none; }
-:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; border-radius:4px; }
+::selection{ background:var(--accent-soft); color:var(--ink); }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
 .wrap{ width:min(640px,100%); margin:0 auto; padding:0 24px; }
 
-header{ display:flex; justify-content:space-between; align-items:center; padding:28px 0; }
+header{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding:28px 0; }
 .logo{ font:600 18px var(--head); color:var(--ink); }
-nav{ display:flex; gap:20px; font-size:14px; }
+.bar{ display:flex; align-items:center; gap:18px; }
+nav{ display:flex; gap:18px; font-size:14px; }
 nav a{ color:var(--soft); transition:color .2s; }
-nav a:hover{ color:var(--ink); }
+nav a:hover{ color:var(--accent); }
+.theme{ width:38px; height:38px; flex:none; display:grid; place-items:center; padding:0; border-radius:50%; border:1px solid var(--line); background:transparent; color:var(--accent); cursor:pointer; transition:background-color .2s,border-color .35s; }
+.theme:hover{ background:var(--hover); }
+.theme svg{ width:18px; height:18px; grid-area:1/1; }
+.theme .sun{ display:var(--sun); }
+.theme .moon{ display:var(--moon); }
 
 .intro{ padding:72px 0 64px; }
 h1{ font:600 clamp(40px,9vw,56px)/1.05 var(--head); color:var(--ink); margin:0 0 18px; letter-spacing:-.02em; }
 .intro p{ margin:0; font-size:18px; max-width:30em; }
 .intro p + p{ margin-top:10px; color:var(--soft); font-size:16px; }
 
-section{ padding:40px 0; border-top:1px solid var(--line); }
+section{ padding:40px 0; border-top:1px solid var(--line); transition:border-color .35s ease; }
 h2{ font:500 20px var(--head); color:var(--ink); margin:0 0 18px; }
 
+/* Work: a screenshot slot above each project */
 .work{ list-style:none; margin:0; padding:0; }
 .work li{ margin:0 -14px; }
 .work a, .work div.row{ display:block; padding:14px; border-radius:12px; transition:background .2s; }
-.work a:hover{ background:var(--hover); }
+.work a:hover{ background:rgba(46, 111, 158, 0.3); }
 .top{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
 .name{ font:500 17px var(--head); color:var(--ink); }
 .kind{ font-size:13px; color:var(--soft); white-space:nowrap; }
@@ -55,13 +87,17 @@ h2{ font:500 20px var(--head); color:var(--ink); margin:0 0 18px; }
 .about p{ margin:0 0 14px; max-width:34em; }
 
 .contact{ display:grid; gap:2px; }
-.contact a{ display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); }
-.contact a span{ color:var(--soft); font-size:14px; }
+.contact a, .contact .soon{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); transition:border-color .35s ease; }
+.contact a{ color:var(--accent); }
+.contact .soon{ color:var(--soft); }
+.contact span{ color:var(--soft); font-size:14px; text-align:right; }
 .contact a:hover span{ color:var(--ink); }
 
-footer{ padding:48px 0 64px; color:var(--soft); font-size:14px; border-top:1px solid var(--line); }
+footer{ padding:48px 0 64px; color:var(--soft); font-size:14px; border-top:1px solid var(--line); transition:border-color .35s ease; }
 
-@media (max-width:480px){ .now li{ grid-template-columns:1fr; gap:0; } .kind{ display:none; } }
+@media (max-width:540px){ .work{ grid-template-columns:1fr; } }
+@media (max-width:480px){ .now li{ grid-template-columns:1fr; gap:0; } }
+@media (max-width:360px){ nav{ gap:14px; } .bar{ gap:12px; } }
 @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } *{ transition:none!important; } }
 </style>
 </head>
@@ -69,33 +105,96 @@ footer{ padding:48px 0 64px; color:var(--soft); font-size:14px; border-top:1px s
 <div class="wrap">
   <header>
     <a class="logo" href="#top" aria-label="xayna, back to top">xayna</a>
-    <nav aria-label="Sections"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <div class="bar">
+      <nav aria-label="Sections"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <button class="theme" id="theme" type="button" aria-label="Switch theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+      </button>
+    </div>
   </header>
 
   <main id="top">
     <div class="intro">
       <h1>xayna</h1>
       <p>Design engineer. I build places, not pages.</p>
-      <p>Designing interfaces and writing the code behind them since 2019. Open to remote design engineering and frontend roles.</p>
+      <p>Designing interfaces and writing the code behind them since 2019. Open to remote design engineering and frontend roles worldwide.</p>
     </div>
 
+
     <section id="work" aria-labelledby="work-h">
-      <h2 id="work-h">Work</h2>
-      <ul class="work">
-        <li><a href="https://github.com/xaynakive/meow" target="_blank" rel="noopener"><div class="top"><span class="name">MEOW <span class="go">↗</span></span><span class="kind">Open-source web tooling</span></div><p class="desc">A guided website builder that plays like a dress-up game. You leave with a real site you own.</p></a></li>
-        <li><a href="https://github.com/xaynakive/mythirium" target="_blank" rel="noopener"><div class="top"><span class="name">Mythirium <span class="go">↗</span></span><span class="kind">WebGL</span></div><p class="desc">A glass cube that holds a whole portfolio, floating in water I wrote as a shader.</p></a></li>
-        <li><a href="https://xaynakive.github.io/purrsona" target="_blank" rel="noopener"><div class="top"><span class="name">PurrSona <span class="go">↗</span></span><span class="kind">Machine learning</span></div><p class="desc">A small model that sorts a cat’s energy into five archetypes, running in the browser with no server.</p></a></li>
-        <li><div class="row"><div class="top"><span class="name">Ocean</span><span class="kind">Assistant</span></div><p class="desc">An assistant that connects my products and platforms, and politely refuses everything outside them. In progress.</p></div></li>
-        <li><div class="row"><div class="top"><span class="name">Breeze</span><span class="kind">NLP and AI safety</span></div><p class="desc">An emotion-aware classifier trained on about 100k samples, with a deterministic safety layer in front.</p></div></li>
-        <li><a href="https://github.com/xaynakive/meowtm" target="_blank" rel="noopener"><div class="top"><span class="name">MeowTM <span class="go">↗</span></span><span class="kind">x86 Assembly</span></div><p class="desc">A colourful 16-bit ATM simulator, because even cats need access to their treat funds.</p></a></li>
-      </ul>
+    <h2 id="work-h">Work</h2>
+    <ul class="work">
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">MEOW</span>
+            <span class="kind">Open-source web tooling</span>
+            </div>
+            <p class="desc">A guided website builder that plays like a dress-up game. You leave with a real site you own.</p>
+        </div>
+        </li>
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">Mythirium</span>
+            <span class="kind">WebGL</span>
+            </div>
+            <p class="desc">A glass cube that holds a whole portfolio, floating in water I wrote as a shader.</p>
+        </div>
+        </li>
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">PurrSona</span>
+            <span class="kind">Machine learning</span>
+            </div>
+            <p class="desc">A small model that sorts a cat’s energy into five archetypes, running in the browser with no server.</p>
+        </div>
+        </li>
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">Ocean</span>
+            <span class="kind">Assistant</span>
+            </div>
+            <p class="desc">An assistant that connects my products and platforms, and politely refuses everything outside them. In progress.</p>
+        </div>
+        </li>
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">Breeze</span>
+            <span class="kind">NLP and AI safety</span>
+            </div>
+            <p class="desc">An emotion-aware classifier trained on about 100k samples, with a deterministic safety layer in front.</p>
+        </div>
+        </li>
+
+        <li>
+        <div class="row">
+            <div class="top">
+            <span class="name">MeowTM</span>
+            <span class="kind">x86 Assembly</span>
+            </div>
+            <p class="desc">A colourful 16-bit ATM simulator, because even cats need access to their treat funds.</p>
+        </div>
+        </li>
+
+    </ul>
     </section>
+
 
     <section aria-labelledby="now-h">
       <h2 id="now-h">Now</h2>
       <ul class="now">
         <li><span>Building</span><div>MEOW and Ocean, in the open</div></li>
-        <li><span>Learning</span><div>Deep learning, and shaders that behave like real light</div></li>
+        <li><span>Learning</span><div>SwiftUI</div></li>
         <li><span>Starting</span><div>365 days of code on January 1st, 2027</div></li>
         <li><span>Next</span><div>Relocating to Switzerland</div></li>
       </ul>
@@ -112,14 +211,46 @@ footer{ padding:48px 0 64px; color:var(--soft); font-size:14px; border-top:1px s
       <div class="contact">
         <a href="mailto:work@xayna.dev">work@xayna.dev <span>Work and recruiting</span></a>
         <a href="mailto:hello@xayna.dev">hello@xayna.dev <span>Everything else</span></a>
-        <a href="https://github.com/xaynakive" target="_blank" rel="noopener">GitHub <span>@xaynakive</span></a>
-        <a href="https://instagram.com/xaynakive" target="_blank" rel="noopener">Instagram <span>@xaynakive</span></a>
-        <a href="https://x.com/xaynakive" target="_blank" rel="noopener">X <span>@xaynakive</span></a>
+        <a href="https://www.linkedin.com/in/xayna" target="_blank" rel="noopener">LinkedIn <span>/in/xayna</span></a>
+        <div class="soon">GitHub <span>tba Jan 1st, 2027</span></div>
+        <div class="soon">Instagram <span>tba Jan 1st, 2027</span></div>
+        <div class="soon">X <span>tba Jan 1st, 2027</span></div>
       </div>
     </section>
   </main>
 
   <footer>Signed with static &amp; sincerity, xayna</footer>
 </div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme'), tc=document.getElementById('tc');
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function current(){
+    var t=root.getAttribute('data-theme');
+    return (t==='dark'||t==='light') ? t : (mq.matches ? 'dark' : 'light');
+  }
+  function paint(){
+    btn.setAttribute('aria-label', current()==='dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    if(tc) tc.setAttribute('content', getComputedStyle(root).getPropertyValue('--bg').trim());
+  }
+  btn.addEventListener('click', function(){
+    var next = current()==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('theme', next); }catch(e){}
+    paint();
+  });
+  if(mq.addEventListener) mq.addEventListener('change', paint);
+  paint();
+
+  // Screenshot slots: show the image when its file exists, otherwise keep the tinted tile
+  document.querySelectorAll('.shot img').forEach(function(img){
+    function ok(){ img.parentNode.classList.add('has'); }
+    function gone(){ if(img.parentNode) img.parentNode.removeChild(img); }
+    if(img.complete){ if(img.naturalWidth>0) ok(); else gone(); }
+    else { img.addEventListener('load', ok); img.addEventListener('error', gone); }
+  });
+})();
+</script>
 </body>
 </html>
